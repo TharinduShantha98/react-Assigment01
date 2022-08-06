@@ -22,20 +22,85 @@ class  NavBar extends Component {
         return(
                 <div className={classes.container}>
                     <AppBar position="static" className={classes.container_AppBar}>
-                        <Toolbar>
-                            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                                <MenuIcon />
-                            </IconButton>
-
-                              <Button>DashBord</Button>
-                              <Button>Product</Button>
-                             <Button>Cart</Button>
-                            <Typography variant="" className={classes.title}>
-                            UserName
-                            </Typography>
+                        <Toolbar style={{
+                           // width:"100%",
+                            display:"flex",
+                            flexDirection:"row",
+                          //  backgroundColor:"#2f55a1",
+                            alignItems:"center",
+                            justifyContent:"space-between",
 
 
+                        }}>
+                            <div style={{display:"flex",
+                                width:"20%",
+                                //height:"100%",
+                          //      backgroundColor:"#a16a2f",
 
+                            }}>
+                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                                    <MenuIcon />
+                                </IconButton>
+                                <Link to={"dashBord"} style={{textDecoration:"none"}}>
+                                    <Button
+                                        variant="outlined"
+                                        color="secondary"
+                                        style={{
+                                            width:"40px!important",
+
+
+                                        }}
+
+                                    >DashBord</Button>
+                                </Link>
+
+
+                            </div>
+
+                            <div style={{display:"flex",
+                                width:"20%",
+                                flexDirection:"row",
+                              //  backgroundColor:"#a16a2f",
+                            }}>
+
+
+                                <div style={{width:"50%"}}>
+                                    <Link to={"productManage"} style={{textDecoration:"none"}}>
+                                        <Button
+                                            variant="outlined"
+                                            color="secondary"
+                                            fullWidth
+                                        >Product</Button>
+                                    </Link>
+                                </div>
+
+
+                                <div style={{width:"50%"}}>
+                                    <Link to={"cartMange"} style={{textDecoration:"none"}}>
+                                        <Button
+                                            variant="outlined"
+                                            color="secondary"
+                                            fullWidth
+                                        >Cart</Button>
+                                    </Link>
+                                </div>
+
+
+
+
+                            </div>
+
+
+                            <div style={{display:"flex",
+                                width:"20%",
+                           //     backgroundColor:"#a16a2f",
+                            }}>
+                                <Typography variant="" className={classes.title}>
+                                    UserName
+                                </Typography>
+
+
+                            </div>
 
 
 

@@ -37,6 +37,7 @@ function App() {
             <Route path={"userRegistration"} element={<UserRegistration/>}/>
             <Route path={"productManage"} element={<ProductMange/>}/>
             <Route path={"cartMange"} element={<CartManage/>}/>
+            <Route path={"dashBord"} element={<DashBord/>}/>
 
 
         </Route>

@@ -12,12 +12,66 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import HomeIcon from "@material-ui/icons/Home";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
+import UserService from "../../services/UserService";
+import jwt_decode from "jwt-decode";
+
 
 class Login extends  Component{
-        constructor(props) {
-            super(props);
+    constructor(props) {
+        super(props);
+
+        this.state = {
+
+
+            user:{
+                userName:"",
+                password:"",
+
+            },
+
+
+
+
         }
 
+
+
+
+    }
+
+
+
+    // handleChange = (event) => {
+    //     const {user} = this.state.user
+    //     user[event.target.name] = event.target.value;
+    //     this.setState({user})
+    //
+    //
+    // }
+
+
+
+
+    handleSubmit =  async  ()=>{
+
+
+    }
+
+
+
+    searchUser = async ()=>{
+        console.log(this.state.user.userName)
+        console.log(this.state.user.password)
+        const loginForm  =  this.state.user;
+
+
+        const response  = await UserService.searchUser(loginForm)
+        console.log(response);
+
+
+
+    }
 
 
 
@@ -29,9 +83,13 @@ class Login extends  Component{
 
           return(
 
+              <ValidatorForm
+                  ref="form"
+                  onSubmit={this.handleSubmit}
+                  onError={errors => console.log(errors)}
+              >
+
               <div className={classes.container}>
-
-
                   <div className={classes.container_div1}>
                       <Box>
                           <TextField
@@ -41,8 +99,17 @@ class Login extends  Component{
                               id="userName"
                               label="user Name"
                               name="userName"
-                              //  autoComplete="email"
+                              onChange={(e)=>{
+                                  const userName  =  e.target.value;
+                                  let user  =  this.state.user;
+                                  user.userName = userName;
+                                  this.setState(user);
+                              }
+
+                              }
                               variant="outlined"
+
+
                               InputProps={{
                                   startAdornment: (
                                       <InputAdornment position="start">
@@ -64,6 +131,14 @@ class Login extends  Component{
                               id="password"
                               variant="outlined"
                               autoComplete="current-password"
+                              onChange={(e)=>{
+                                  const password  =  e.target.value;
+                                  let user  =  this.state.user;
+                                  user.password = password;
+                                  this.setState(user);
+                              }
+
+                              }
                               InputProps={{
                                   startAdornment: (
                                       <InputAdornment position="start">
@@ -71,6 +146,8 @@ class Login extends  Component{
                                       </InputAdornment>
                                   ),
                               }}
+
+                              size={"small"}
 
 
 
@@ -80,18 +157,22 @@ class Login extends  Component{
                               label="Remember me"
                           />
                           <Button
-                              type="submit"
+                             // type="submit"
                               fullWidth
                               variant="contained"
                               color="primary"
                               sx={{ mt: 3, mb: 2 }}
+                              onClick={
+                                 this.searchUser
+                              }
+
 
 
 
                           >
-                            <Link to={"layout"}>
+                          {/*<Link to={"layout"}>*/}
                                 Log In
-                            </Link>
+                            {/*</Link>*/}
 
 
 
@@ -114,7 +195,7 @@ class Login extends  Component{
               </div>
 
 
-
+              </ValidatorForm>
           )
 
 
