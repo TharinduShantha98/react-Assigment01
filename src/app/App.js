@@ -4,6 +4,7 @@ import UserRegistration from "../pages/UserRegistration/UserRegistration";
 import ProductMange from "../pages/ProducetMange/producetMange";
 import CartManage from "../pages/CartManage/CartManage";
 import DashBord from "../pages/DashBord/DashBord";
+import NavBar from "../pages/NavidationBar/Nav";
 
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
     //  <UserRegistration/>
     //  <ProductMange/>
    //   <CartManage/>
-      <DashBord/>
+    //  <DashBord/>
+      <NavBar/>
 
 
 
