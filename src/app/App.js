@@ -38,11 +38,12 @@ function App() {
             <Route path={"productManage"} element={<ProductMange/>}/>
             <Route path={"cartMange"} element={<CartManage/>}/>
             <Route path={"dashBord"} element={<DashBord/>}/>
+            <Route path={"NavBar"} element={<NavBar/>}/>
 
 
         </Route>
 
-
+        <Route path={"userRegistration"} element={<UserRegistration/>}/>
 
 
     </Routes>

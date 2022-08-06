@@ -8,10 +8,33 @@ import {Link} from "react-router-dom";
 import {styleSheet} from "./index";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
+import history from "../../history";
 
 class  NavBar extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            userName:"",
+
+
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+    componentDidMount() {
+        let item = localStorage.getItem("userName");
+        this.setState({userName:item});
+
+
     }
 
 
@@ -96,7 +119,7 @@ class  NavBar extends Component {
                            //     backgroundColor:"#a16a2f",
                             }}>
                                 <Typography variant="" className={classes.title}>
-                                    UserName
+                                    {this.state.userName}
                                 </Typography>
 
 

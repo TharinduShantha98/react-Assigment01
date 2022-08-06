@@ -15,6 +15,7 @@ import LockIcon from '@material-ui/icons/Lock';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
 import UserService from "../../services/UserService";
 import jwt_decode from "jwt-decode";
+import history  from "../../history"
 
 
 class Login extends  Component{
@@ -25,10 +26,14 @@ class Login extends  Component{
 
 
             user:{
-                userName:"",
+                username:"",
                 password:"",
 
             },
+
+
+            location:"#",
+
 
 
 
@@ -42,16 +47,6 @@ class Login extends  Component{
 
 
 
-    // handleChange = (event) => {
-    //     const {user} = this.state.user
-    //     user[event.target.name] = event.target.value;
-    //     this.setState({user})
-    //
-    //
-    // }
-
-
-
 
     handleSubmit =  async  ()=>{
 
@@ -60,14 +55,33 @@ class Login extends  Component{
 
 
 
-    searchUser = async ()=>{
-        console.log(this.state.user.userName)
+    searchUser1 = async ()=>{
+        console.log(this.state.user.username)
         console.log(this.state.user.password)
         const loginForm  =  this.state.user;
 
 
         const response  = await UserService.searchUser(loginForm)
-        console.log(response);
+
+        const token = response.data.token;
+        const  decoded = jwt_decode(token);
+        console.log(decoded);
+
+        if(decoded.user === this.state.user.username){
+            console.log("Eka fatta");
+            this.setState({location:"/layout"})
+            localStorage.setItem("userName",decoded.user);
+            history.push({
+                pathname:"/layout"
+            })
+
+        }
+
+
+
+
+
+
 
 
 
@@ -102,7 +116,7 @@ class Login extends  Component{
                               onChange={(e)=>{
                                   const userName  =  e.target.value;
                                   let user  =  this.state.user;
-                                  user.userName = userName;
+                                  user.username = userName;
                                   this.setState(user);
                               }
 
@@ -163,21 +177,35 @@ class Login extends  Component{
                               color="primary"
                               sx={{ mt: 3, mb: 2 }}
                               onClick={
-                                 this.searchUser
+                                 this.searchUser1
                               }
 
 
 
 
                           >
-                          {/*<Link to={"layout"}>*/}
+                          <Link to={this.state.location}>
                                 Log In
-                            {/*</Link>*/}
+                            </Link>
 
 
 
 
                           </Button>
+
+
+                          <Grid container>
+                              <Grid item xs>
+                                  <Link to={"#"} variant="body2">
+                                      Forgot password?
+                                  </Link>
+                              </Grid>
+                              <Grid item>
+                                  <Link to={"userRegistration"} variant="body2">
+                                      {"Don't have an account? Sign Up"}
+                                  </Link>
+                              </Grid>
+                          </Grid>
 
                       </Box>
 

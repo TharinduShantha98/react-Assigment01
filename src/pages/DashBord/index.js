@@ -2,7 +2,7 @@ export const styleSheet = {
 
     container:{
         width:'100vw',
-        height:'100vh',
+        height:'90vh',
     //    backgroundColor:"#e37e7e",
         display:"flex",
         flexDirection:"column",
@@ -13,7 +13,7 @@ export const styleSheet = {
     },
     container_main1:{
         width: "50%",
-        height: "50%",
+        height: "40%",
     //    backgroundColor:"#633232",
         flexDirection:"row",
         display: "flex",
@@ -27,7 +27,7 @@ export const styleSheet = {
     },
     container_main2:{
         width: "50%",
-        height: "50%",
+        height: "40%",
     //    backgroundColor:"#871f1f",
         flexDirection:"row",
         display: "flex",

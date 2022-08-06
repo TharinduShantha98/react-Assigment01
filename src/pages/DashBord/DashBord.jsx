@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {styleSheet} from "./index";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
+import {Link} from "react-router-dom";
 
 class DashBord extends Component{
     constructor(props) {
@@ -39,6 +40,17 @@ class DashBord extends Component{
 
 
                     <div className={classes.container_main1_div1}>
+
+                            <Typography variant="h6">
+
+                                <Link to={"userRegistration"}>
+                                User Registration
+
+                                </Link>
+                            </Typography>
+
+
+
 
                     </div>
 
