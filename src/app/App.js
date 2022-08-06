@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "../pages/login/login";
 import UserRegistration from "../pages/UserRegistration/UserRegistration";
+import ProductMange from "../pages/ProducetMange/producetMange";
 
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
     // </div>
 
      //<Login/>
-      <UserRegistration/>
+    //  <UserRegistration/>
+      <ProductMange/>
 
 
 
