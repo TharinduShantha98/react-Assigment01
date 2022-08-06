@@ -2,6 +2,7 @@ import React from "react";
 import Login from "../pages/login/login";
 import UserRegistration from "../pages/UserRegistration/UserRegistration";
 import ProductMange from "../pages/ProducetMange/producetMange";
+import CartManage from "../pages/CartManage/CartManage";
 
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
 
      //<Login/>
     //  <UserRegistration/>
-      <ProductMange/>
+    //  <ProductMange/>
+      <CartManage/>
 
 
 
