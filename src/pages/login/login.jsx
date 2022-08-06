@@ -89,8 +89,10 @@ class Login extends  Component{
 
 
                           >
+                            <Link to={"layout"}>
+                                Log In
+                            </Link>
 
-                              Log In
 
 
 
