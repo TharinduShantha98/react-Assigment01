@@ -15,6 +15,9 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Paper from "@material-ui/core/Paper";
+import {ValidatorForm} from "react-material-ui-form-validator";
+import UserService from "../../services/UserService";
+
 
 class UserRegistration extends Component{
 
@@ -25,9 +28,62 @@ class UserRegistration extends Component{
 
         this.state= {
 
+            user:{
+                email:'',
+                username:'',
+                password:'',
+                name:{
+                    firstname:'',
+                    lastname:''
+                },
+                address:{
+                    city:'',
+                    street:'',
+                    number:'',
+                    zipcode:'',
+                    geolocation:{
+                        lat:'',
+                        long:''
+                    }
+                },
+                phone:''
+            },
+
+
+
+
+
 
             data: [],
         }
+
+    }
+
+
+
+
+    handleSubmit = async ()=>{
+
+        let formData  = this.state.user;
+        let response  = await UserService.addNewUser(formData);
+
+        console.log(response);
+
+        if(response.status === 200 ){
+            alert("successfully added");
+
+        }else{
+            alert("not successfully added ")
+        }
+
+
+    }
+
+    clearTextFiled = ()=>{
+
+
+
+
 
     }
 
@@ -46,6 +102,16 @@ class UserRegistration extends Component{
 
             return(
                 <div className={classes.container}>
+
+
+                    <ValidatorForm
+                        ref="form"
+                        onSubmit={this.handleSubmit}
+                        onError={errors => console.log(errors)}
+                    >
+
+
+
                     <div className={classes.container_div}>
 
                         <div className={classes.container_div_div1}>
@@ -71,10 +137,19 @@ class UserRegistration extends Component{
                                         //  autoComplete="email"
                                         variant="outlined"
                                         size={'small'}
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.name.firstname = e.target.value;
+                                            this.setState(user)
 
 
 
-                                    />
+                                        }}
+
+
+                                    >
+
+                                    </TextField>
 
                                     <TextField
                                         margin="normal"
@@ -87,6 +162,14 @@ class UserRegistration extends Component{
                                         variant="outlined"
                                         autoFocus
                                         size={"small"}
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.email= e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
 
 
                                     />
@@ -112,6 +195,15 @@ class UserRegistration extends Component{
 
                                         size={"small"}
 
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.password = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
+
 
 
                                     />
@@ -127,6 +219,15 @@ class UserRegistration extends Component{
                                         variant="outlined"
                                         size={'small'}
 
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.address.street = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
+
 
                                     />
                                     <TextField
@@ -140,6 +241,16 @@ class UserRegistration extends Component{
                                         size={'small'}
 
 
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.address.zipcode = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
+
+
                                     />
 
                                     <TextField
@@ -151,6 +262,16 @@ class UserRegistration extends Component{
                                         name="longValue"
                                         variant="outlined"
                                         size={'small'}
+
+
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.address.geolocation.long = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
 
 
                                     />
@@ -168,6 +289,15 @@ class UserRegistration extends Component{
                                         variant="outlined"
                                         size={'small'}
 
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.name.lastname = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
+
                                     />
 
                                     <TextField
@@ -180,6 +310,16 @@ class UserRegistration extends Component{
                                         //  autoComplete="email"
                                         variant="outlined"
                                         size={'small'}
+
+
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.username = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
 
                                     />
 
@@ -194,6 +334,15 @@ class UserRegistration extends Component{
                                         // autoComplete="carType"
                                         variant="outlined"
                                         size={'small'}
+
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.address.city = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
 
 
 
@@ -212,6 +361,16 @@ class UserRegistration extends Component{
                                         variant="outlined"
                                         size={'small'}
 
+
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.address.number = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
+
                                     />
                                     <TextField
                                         margin="normal"
@@ -225,6 +384,14 @@ class UserRegistration extends Component{
 
                                         size={'small'}
 
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.address.geolocation.lat = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
 
                                     />
 
@@ -240,6 +407,14 @@ class UserRegistration extends Component{
                                         variant="outlined"
 
                                         size={'small'}
+                                        onChange={(e)=>{
+                                            let user  = this.state.user;
+                                            user.phone = e.target.value;
+                                            this.setState(user)
+
+
+
+                                        }}
 
 
                                     />
@@ -262,6 +437,7 @@ class UserRegistration extends Component{
                                         Clear
                                     </Button>
                                     <Button
+                                        type="submit"
                                         variant="outlined"
                                         color="primary"
                                         style={{marginLeft:"5px",
@@ -285,7 +461,7 @@ class UserRegistration extends Component{
 
 
                     </div>
-
+                    </ValidatorForm>
 
 
                     <div className={classes.container_div2}>

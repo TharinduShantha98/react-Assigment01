@@ -22,6 +22,25 @@ class UserService{
 
     }
 
+    addNewUser =  async (data)=>{
+        const promise = new Promise((resolve, reject) => {
+            axios.post("https://fakestoreapi.com/users",data)
+                .then((res)=>{
+                    return resolve(res);
+                }).catch((err)=>{
+                    return resolve(err);
+            })
+
+        })
+
+        return  await promise;
+
+    }
+
+
+
+
+
 
 
 
