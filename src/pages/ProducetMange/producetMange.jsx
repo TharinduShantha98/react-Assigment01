@@ -6,6 +6,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import {ValidatorForm} from "react-material-ui-form-validator";
+import productService from "../../services/productService";
 class ProductMange extends  Component{
 
     constructor(props) {
@@ -23,7 +25,7 @@ class ProductMange extends  Component{
             formData:{
 
                 title: '',
-                price: 13.5,
+                price: '',
                 description: '',
                 image: '',
                 category: ''
@@ -38,12 +40,31 @@ class ProductMange extends  Component{
 
 
     }
+    handleSubmit= async ()=>{
 
+        let formData = this.state.formData;
+        let response  = await productService.addProductService(formData);
+        console.log(response);
+        console.log(response.status);
+        if(response.status === 200){
+            alert("successfully added");
+
+        }else{
+            alert("not successfully added");
+
+        }
+
+
+
+
+
+    }
 
 
 
     handleChange = (e)=>{
         this.setState({file: URL.createObjectURL(e.target.files[0])})
+
 
 
     }
@@ -55,6 +76,13 @@ class ProductMange extends  Component{
 
 
         return(
+
+            <ValidatorForm
+                ref="form"
+                onSubmit={this.handleSubmit}
+                onError={errors => console.log(errors)}
+            >
+
 
             <div className={classes.container}>
                 <Typography variant="h3">Product Manage</Typography>
@@ -74,6 +102,12 @@ class ProductMange extends  Component{
                             //  autoComplete="email"
                             variant="outlined"
                             size={'small'}
+                            onChange={(e)=>{
+                                let formData  = this.state.formData;
+                                formData.title = e.target.value;
+                                this.setState(formData);
+                            }}
+
 
                         />
 
@@ -96,9 +130,20 @@ class ProductMange extends  Component{
 
                             size="small"
                             //variant="outlined"
-
-
                             style={{ width: '100%' }}
+                            onChange={(e, value) => {
+                                console.log(value.label);
+                                let formData  = this.state.formData;
+                                formData.category = value.label;
+                                this.setState(formData);
+
+
+
+                            }}
+
+
+
+
                         />
 
                         <div className={classes. container_main1_div1_div1}>
@@ -111,6 +156,13 @@ class ProductMange extends  Component{
                                         height:"100%",
 
                                 }}
+                                     onChange={()=>{
+                                         let formData = this.state.formData;
+                                         formData.image = this.state.file;
+                                         this.setState(formData);
+
+                                     }}
+
 
 
                                 />
@@ -126,6 +178,7 @@ class ProductMange extends  Component{
                                 size={"small"}
                                 onChange={this.handleChange}
                                 style={{marginTop:"1px",marginBottom:'8px'}}
+
 
 
                             />
@@ -148,6 +201,17 @@ class ProductMange extends  Component{
                             //  autoComplete="email"
                             variant="outlined"
                             size={'small'}
+                            onChange={(e)=>{
+                                let formData = this.state.formData;
+                                formData.price = e.target.value;
+                                this.setState(formData);
+
+
+
+                            }}
+
+
+
 
                         />
                         <TextareaAutosize
@@ -155,6 +219,14 @@ class ProductMange extends  Component{
                             minRows={2.4}
                             placeholder="description"
                             style={{width:"98%"}}
+                            onChange={(e)=>{
+                                let formData = this.state.formData;
+                                formData.description =  e.target.value;
+                                this.setState(formData);
+
+
+                            }}
+
                         />
 
 
@@ -188,6 +260,15 @@ class ProductMange extends  Component{
                         style={{width:"20%",
                             marginLeft:"5%"
                         }}
+                        type="submit"
+
+                        // onClick={()=>{
+                        //     console.log(this.state.file);
+                        //     console.log(this.state.formData.description);
+                        //
+                        //
+                        //
+                        // }}
                     >
                         Save
                     </Button>
@@ -200,7 +281,7 @@ class ProductMange extends  Component{
             </div>
 
 
-
+            </ValidatorForm>
 
 
         )

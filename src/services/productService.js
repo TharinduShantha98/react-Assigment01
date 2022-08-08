@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class ProductService{
+class productService{
 
     addProductService = async (data)=>{
 
@@ -20,6 +20,8 @@ class ProductService{
 
         })
 
+        return await promise;
+
 
 
 
@@ -35,3 +37,5 @@ class ProductService{
 
 
 }
+
+export default new productService();
