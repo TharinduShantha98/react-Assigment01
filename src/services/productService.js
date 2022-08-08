@@ -32,6 +32,30 @@ class productService{
 
 
 
+    cartManage = async (data)=>{
+
+        const  promise = new Promise((resolve, reject) => {
+            axios.post("https://fakestoreapi.com/carts",data)
+                .then((res)=>{
+                    return resolve(res);
+                })
+                .catch((err)=>{
+                    return resolve(err)
+                })
+
+
+
+
+
+        })
+
+        return await promise;
+
+    }
+
+
+
+
 
 
 
