@@ -76,7 +76,6 @@ class UserRegistration extends Component{
             alert("not successfully added ")
         }
 
-
     }
 
     clearTextFiled = ()=>{

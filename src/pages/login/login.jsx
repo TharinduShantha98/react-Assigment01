@@ -34,14 +34,7 @@ class Login extends  Component{
 
             location:"#",
 
-
-
-
-
         }
-
-
-
 
     }
 
@@ -67,6 +60,8 @@ class Login extends  Component{
         const  decoded = jwt_decode(token);
         console.log(decoded);
 
+
+
         if(decoded.user === this.state.user.username){
             console.log("Eka fatta");
             this.setState({location:"/layout"})
@@ -76,14 +71,6 @@ class Login extends  Component{
             })
 
         }
-
-
-
-
-
-
-
-
 
     }
 

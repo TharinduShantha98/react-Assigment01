@@ -13,13 +13,26 @@ class ProductMange extends  Component{
 
         this.state={
             position: [
-                { label: 'AirPort'},
-                { label: 'Trip' },
-                { label: 'Wedding' },
-                { label: 'self driving' },
-                { label: 'add driver' },
+                { label: 'electronic'},
+                { label: 'toys' },
+                { label: 'shoes' },
 
             ],
+
+
+            formData:{
+
+                title: '',
+                price: 13.5,
+                description: '',
+                image: '',
+                category: ''
+
+
+            },
+
+            file:"",
+
         }
 
 
@@ -29,6 +42,11 @@ class ProductMange extends  Component{
 
 
 
+    handleChange = (e)=>{
+        this.setState({file: URL.createObjectURL(e.target.files[0])})
+
+
+    }
 
     render() {
         const {classes} = this.props;
@@ -88,10 +106,17 @@ class ProductMange extends  Component{
                             <div className={classes. container_main1_div1_div1_img}
                                 style={{backgroundColor:"#c1baba"}}
                             >
-                                <img />
+                                <img src={this.state.file}
+                                style={{width: "100%",
+                                        height:"100%",
+
+                                }}
+
+
+                                />
                             </div>
 
-                            <TextField
+                            <input
                                 id="downPayment"
                                 label=""
                                 type={'file'}
@@ -99,6 +124,7 @@ class ProductMange extends  Component{
                                 variant="outlined"
                                 accept={"image/png,image/jpeg"}
                                 size={"small"}
+                                onChange={this.handleChange}
                                 style={{marginTop:"1px",marginBottom:'8px'}}
 
 
