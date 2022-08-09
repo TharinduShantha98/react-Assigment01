@@ -27,16 +27,42 @@ class DashBord extends Component{
         let allCarts = await  productService.getAllCarts();
         console.log(allCarts.data.length);
 
-        this.setState({cartCount:allCarts.data.length})
-
-
+        this.setState({cartCount:allCarts.data.length});
 
 
     }
 
+    productCount = async ()=>{
+        let response  = await productService.getAllProduct();
+
+        this.setState({productCount:response.data.length});
+
+    }
+
+
+    getAllUser = async ()=>{
+        let response = await productService.getAllUsers();
+
+        this.setState({usersCount:response.data.length});
+
+    }
+
+
+
+
+
+
+
+
 
     componentDidMount() {
         this.cartProductCount().then(r => {
+            this.productCount().then(r => {
+                this.getAllUser().then(r => {
+
+                })
+
+            })
 
         })
     }
@@ -52,7 +78,7 @@ class DashBord extends Component{
                 <div className={classes.container_main1}>
                     <div  className={classes.container_main1_div1} >
                         <Typography variant="h3">Product</Typography>
-                        <Typography variant="h6">60</Typography>
+                        <Typography variant="h6">{this.state.productCount}</Typography>
 
                     </div>
                     <div className={classes.container_main1_div2}>
@@ -66,7 +92,7 @@ class DashBord extends Component{
 
                     <div className={classes.container_main1_div2}>
                         <Typography variant="h3">Users</Typography>
-                        <Typography variant="h6">43</Typography>
+                        <Typography variant="h6">{this.state.usersCount}</Typography>
                     </div>
 
 

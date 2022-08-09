@@ -63,6 +63,46 @@ class productService{
 
     }
 
+    getAllProduct = async ()=>{
+
+        const  promise = new Promise((resolve, reject) => {
+            axios.get("https://fakestoreapi.com/products")
+                .then((res)=>{
+                    return resolve(res)
+                })
+                .catch((err)=>{
+                    return resolve(err)
+                })
+
+        })
+
+
+        return await  promise;
+
+
+
+    }
+
+
+
+    getAllUsers = async ()=>{
+        const  promise = new Promise((resolve, reject) => {
+            axios.get("https://fakestoreapi.com/users")
+                .then((res)=>{
+                    return resolve(res);
+                })
+                .catch((err)=>{
+                    return resolve(err);
+                })
+
+
+        })
+
+
+        return await promise;
+
+    }
+
 
 
 
