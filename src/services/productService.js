@@ -15,9 +15,6 @@ class productService{
                 })
 
 
-
-
-
         })
 
         return await promise;
@@ -43,15 +40,33 @@ class productService{
                     return resolve(err)
                 })
 
+        })
+        return await promise;
+    }
 
 
 
+    getAllCarts = async ()=>{
+        const  promise = new Promise((resolve, reject) => {
+            axios.get("https://fakestoreapi.com/carts")
+                .then((res)=>{
+                    return resolve(res);
+                })
+                .catch((err)=>{
+                    return resolve (err);
+                })
 
         })
+
 
         return await promise;
 
     }
+
+
+
+
+
 
 
 

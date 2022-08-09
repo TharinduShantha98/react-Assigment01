@@ -3,12 +3,43 @@ import {styleSheet} from "./index";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 import {Link} from "react-router-dom";
+import productService from "../../services/productService";
 
 class DashBord extends Component{
     constructor(props) {
         super(props);
+
+        this.state = {
+            cartCount:"",
+            productCount:"",
+            usersCount:"",
+
+
+        }
+
+
+
+
     }
 
+
+    cartProductCount = async ()=>{
+        let allCarts = await  productService.getAllCarts();
+        console.log(allCarts.data.length);
+
+        this.setState({cartCount:allCarts.data.length})
+
+
+
+
+    }
+
+
+    componentDidMount() {
+        this.cartProductCount().then(r => {
+
+        })
+    }
 
 
     render() {
@@ -26,7 +57,7 @@ class DashBord extends Component{
                     </div>
                     <div className={classes.container_main1_div2}>
                         <Typography variant="h3">Cart</Typography>
-                        <Typography variant="h6">12</Typography>
+                        <Typography variant="h6">{this.state.cartCount}</Typography>
                     </div>
 
                 </div>

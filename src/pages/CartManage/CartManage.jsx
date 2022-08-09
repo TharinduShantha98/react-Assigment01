@@ -74,14 +74,17 @@ class CartManage extends Component{
         let data  =this.state.formData;
 
 
-       let response =  productService.cartManage(data);
+       let response = await productService.cartManage(data);
 
 
+       if(response.status === 200){
+           alert("successfully added");
+
+       }else{
+           alert("not successfully added");
+
+       }
        console.log(response);
-
-
-
-
 
     }
 
